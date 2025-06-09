@@ -1,0 +1,6 @@
+{
+  "version": "0.1.0",
+  "origin_package": "OctoBot-Stromberg-Tentacles",
+  "tentacles": ["ATRVolatilityEvaluator"],
+  "tentacles-requirements": []
+}

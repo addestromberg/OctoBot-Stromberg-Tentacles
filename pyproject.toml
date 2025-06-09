@@ -1,0 +1,29 @@
+[project]
+name = "octobot-stromberg-tentacles"
+version = "0.1.0"
+description = "A collection of custom OctoBot tentacles."
+authors = [
+    {name = "Adde Stromberg",email = "adde@upperfield.se"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<4.0"
+dependencies = [
+    "octobot (>=2.0.10,<3.0.0)",
+]
+
+[tool.poetry]
+packages = [{include = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.0"
+ruff = "^0.11.12"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+update = "scripts.update:main"  # Re-install the local tentacles. (for development)
+start = "scripts.start:main"    # Just runs OctoBot cmd.
+pack = "scripts.pack:main"      # Pack to zip for release
