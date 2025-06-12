@@ -13,11 +13,11 @@
 #
 #  You should have received a copy of the GNU Lesser General Public
 #  License along with this library.
+import numpy as np
 import tulipy
 
 import octobot_commons.constants as commons_constants
 import octobot_commons.enums as enums
-import octobot_commons.data_util as data_util
 import octobot_evaluators.evaluators as evaluators
 import octobot_evaluators.util as evaluators_util
 import octobot_trading.api as trading_api
@@ -74,15 +74,22 @@ class ATRVolatilityEvaluator(evaluators.TAEvaluator):
 
     async def evaluate(self, cryptocurrency, symbol, time_frame, high, low, close, candle):
         try:
-            if isinstance(self.period, (int, float)) and len(close) >= self.period:
-                high = data_util.drop_nan(high)
-                low = data_util.drop_nan(low)
-                close = data_util.drop_nan(close)
-                atr = tulipy.atr(high, low, close, self.atr_period)[-1]
-                self.logger.debug(f"Calculated ATR: {atr}")
+            if (
+                isinstance(self.period, int)
+                and len(close) > self.period
+                and len(high) > self.period
+                and len(low) > self.period
+            ):
+                # print(high, low, close)
+                high_np = np.array(high, dtype=np.float64)
+                low_np = np.array(low, dtype=np.float64)
+                close_np = np.array(close, dtype=np.float64)
+
+                atr = tulipy.atr(high_np, low_np, close_np, self.atr_period)[-1]
+                print(f"ATR: {atr}")
                 self.eval_note = float(atr)
         except Exception as e:
-            self.logger.error("[ATR Evaluator] Failed to calculate ATR.")
+            self.logger.exception(e)
             self.logger.debug(str(e))
             self.eval_note = commons_constants.START_PENDING_EVAL_NOTE
 
