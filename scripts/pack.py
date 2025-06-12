@@ -7,7 +7,7 @@ def main():
     cmd = [
         "OctoBot", "tentacles",
         "--pack",
-        "../pack/any_platform.zip",
+        "../any_platform.zip",
         "--directory",
         "src/",
     ]

@@ -2,8 +2,6 @@
 user/
 tentacles/
 logs/
-*.zip
-metadata.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,0 +1,9 @@
+author: Adde Stromberg
+description: 'A collection of custom octobot tentacles.'
+name: any_platform.zip
+repository: https://github.com/addestromberg/OctoBot-Stromberg-Tentacles
+short-name: any_platform.zip
+tags: []
+tentacles: []
+type: tentacle_package
+version: 0.1.0
